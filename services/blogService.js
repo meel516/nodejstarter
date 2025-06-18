@@ -8,7 +8,16 @@ const getAllBlogs = async () => {
   return res;
 };
 const getBlogsByUser = async (userId) => {
-  const res = await blogModal.find({ user: userId });
+  const res = await blogModal.find({ user: userId }).populate("user");
   return res;
 };
-export { createBlog, getAllBlogs, getBlogsByUser };
+const patchBlogByUser = async (blogId, userId, updateData) => {
+  const res = await blogModal.findOneAndUpdate(
+    { _id: blogId, user: userId }, // only update if user owns the blog
+    { $set: updateData }, // fields to update
+    { new: true } // return the updated blog instead of the old one
+  );
+
+  return res;
+};
+export { createBlog, getAllBlogs, getBlogsByUser, patchBlogByUser };
