@@ -1,15 +1,15 @@
 import express from "express";
 import {
   getUserController,
-  loginController,
-  registerController,
+  UpdateUserController,
+  getAllUsersController,
 } from "../../controller/userController.js";
 import { verifyToken } from "../../middleware/auth.js";
 const router = express.Router();
-router.post("/register", registerController);
 
-router.post("/login", loginController);
 router.use(verifyToken);
-router.get("/users", getUserController);
+router.get("/", getAllUsersController);
+router.get("/user", getUserController);
+router.patch("/user", UpdateUserController);
 
 export default router;

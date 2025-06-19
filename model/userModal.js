@@ -17,6 +17,13 @@ const userSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  profilePic: {
+    type: String,
+  },
+  userName: {
+    type: String,
+    unique: true,
+  },
 });
 const userModal = mongoose.model("User", userSchema);
 export default userModal;
