@@ -1,8 +1,10 @@
 import express from "express";
 import v1Routes from "./routes/v1/index.js";
 import connectDB from "./config/db.js";
+import cors from "cors"
 const app = express();
 app.use(express.json());
+app.use(cors())
 connectDB();
 app.get("/", (req, res) => {
   res.send("Hello, World!");

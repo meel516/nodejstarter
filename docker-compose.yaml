@@ -15,8 +15,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
-      - /app/node_modules
+      - .:/app # Mount current dir into container
+      - /app/node_modules # Prevent host from overwriting node_modules
     networks:
       - app-network
     depends_on:
