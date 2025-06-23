@@ -3,6 +3,7 @@ import {
   createBlog,
   getAllBlogs,
   getBlogsByUser,
+  getBlogByUser
   patchBlogByUser,
 } from "../services/blogService.js";
 import { createBlogValidation } from "../validations/blog.js";
@@ -33,6 +34,15 @@ const getBlogsByUserController = async (req, res) => {
     success: true,
   });
 };
+const getBlogByUserController =()=>{
+  const blogId = req.params.id;
+  const result = await getBlogByUser(blogId, req.user._id);
+  res.status(200).json({
+    message: "Blog updated successfully",
+    data: result,
+    success: true,
+  });
+}
 const patchBlogByUserController = async (req, res) => {
   const blogId = req.params.id;
   const { title, description, image } = req.body;
@@ -51,5 +61,6 @@ export {
   createBlogController,
   getAllBlogsController,
   getBlogsByUserController,
+  getBlogByUserController;
   patchBlogByUserController,
 };
