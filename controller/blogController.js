@@ -34,7 +34,7 @@ const getBlogsByUserController = async (req, res) => {
     success: true,
   });
 };
-const getBlogByUserController = async () => {
+const getBlogByUserController = async (req, res) => {
   const blogId = req.params.id;
   const result = await getBlogByUser(blogId, req.user._id);
   res.status(200).json({
