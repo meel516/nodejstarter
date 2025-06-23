@@ -88,11 +88,9 @@ export const registerController = async (req, res) => {
 export const UpdateUserController = async (req, res) => {
   const { profilePic, name } = req.body;
   const result = await updateUser(req.user._id, { name, profilePic });
-  res
-    .status(200)
-    .json({
-      message: "User updated successfully",
-      data: result,
-      success: true,
-    });
+  res.status(200).json({
+    message: "User updated successfully",
+    data: result,
+    success: true,
+  });
 };
