@@ -7,7 +7,7 @@ import {
   getBlogByUserController,
 } from "../../controller/blogController.js";
 import { verifyToken } from "../../middleware/auth.js";
-import { getBlogByUser } from "../../services/blogService.js";
+
 const router = express.Router();
 
 router.get("/", getAllBlogsController);
