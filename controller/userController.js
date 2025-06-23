@@ -8,6 +8,7 @@ import {
 import jwt from "jsonwebtoken";
 import { userValidation, loginValidation } from "../validations/user.js";
 import CustomError from "../utils/CustomError.js";
+import { success } from "zod/v4";
 
 export const postUserController = async (req, res) => {
   const { name, email, password } = req.body;
@@ -80,10 +81,18 @@ export const registerController = async (req, res) => {
     password,
   });
 
-  res.status(201).json({ message: "User created successfully", data: user });
+  res
+    .status(201)
+    .json({ message: "User created successfully", data: user, success: true });
 };
 export const UpdateUserController = async (req, res) => {
   const { profilePic, name } = req.body;
   const result = await updateUser(req.user._id, { name, profilePic });
-  res.status(200).json({ message: "User updated successfully", data: result });
+  res
+    .status(200)
+    .json({
+      message: "User updated successfully",
+      data: result,
+      success: true,
+    });
 };
