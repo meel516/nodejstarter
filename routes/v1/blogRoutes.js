@@ -5,12 +5,14 @@ import {
   getBlogsByUserController,
   patchBlogByUserController,
   getBlogByUserController,
+  getBlogByIdController,
 } from "../../controller/blogController.js";
 import { verifyToken } from "../../middleware/auth.js";
 
 const router = express.Router();
 
 router.get("/", getAllBlogsController);
+router.get("/:id", getBlogByIdController);
 router.use(verifyToken);
 router.get("/user", getBlogsByUserController);
 router.post("/user", createBlogController);

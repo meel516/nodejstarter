@@ -7,6 +7,9 @@ const getAllBlogs = async () => {
   const res = await blogModal.find({}).populate("user");
   return res;
 };
+const getBlogById = async (blogId) => {
+  const res = await blogModal.findById(blogId).populate("user");
+};
 const getBlogsByUser = async (userId) => {
   const res = await blogModal.find({ user: userId }).populate("user");
   return res;
@@ -32,4 +35,5 @@ export {
   getBlogsByUser,
   patchBlogByUser,
   getBlogByUser,
+  getBlogById,
 };

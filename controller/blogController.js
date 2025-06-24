@@ -26,6 +26,15 @@ const getAllBlogsController = async (req, res) => {
     success: true,
   });
 };
+const getBlogByIdController = async (req, res) => {
+  const blogId = req.params.id;
+  const result = await getBlogById(blogId);
+  res.status(200).json({
+    message: "Blog fetched successfully",
+    data: result,
+    success: true,
+  });
+};
 const getBlogsByUserController = async (req, res) => {
   const result = await getBlogsByUser(req.user._id);
   res.status(200).json({
@@ -57,9 +66,11 @@ const patchBlogByUserController = async (req, res) => {
     success: true,
   });
 };
+
 export {
   createBlogController,
   getAllBlogsController,
+  getBlogByIdController,
   getBlogsByUserController,
   getBlogByUserController,
   patchBlogByUserController,
