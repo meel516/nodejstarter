@@ -9,6 +9,7 @@ const getAllBlogs = async () => {
 };
 const getBlogById = async (blogId) => {
   const res = await blogModal.findById(blogId).populate("user");
+  return res;
 };
 const getBlogsByUser = async (userId) => {
   const res = await blogModal.find({ user: userId }).populate("user");
