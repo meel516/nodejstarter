@@ -1,4 +1,5 @@
 import userModal from "../model/userModal.js";
+import { rabbitMQService } from "../utils/RabbiMQ.js";
 
 export const checkUser = async (user) => {
   try {
@@ -39,6 +40,14 @@ export const postUser = async (user) => {
     const savedUser = await newUser.save();
     const plainUser = savedUser.toObject(); // convert to plain JS object
     delete plainUser.password;
+    const event = {
+      type: "USER_REGISTERED",
+      userId: plainUser._id,
+      email: plainUser.email,
+      name: plainUser.name,
+      timestamp: new Date(),
+    };
+    await rabbitMQService.publishEvent("user.events", "user.registered", event);
     return plainUser;
   } catch (err) {
     console.error("Error saving user:", err);
