@@ -20,6 +20,6 @@ router.patch("/user/:id", patchBlogByUserController); // PATCH /blogs/user/:id
 
 // Public routes
 router.get("/", getAllBlogsController); // GET /blogs
-router.get("/id/:id", getBlogByIdController); // GET /blogs/id/:id (avoid catch-all)
+router.get("/:id", getBlogByIdController); // GET /blogs/id/:id (avoid catch-all)
 
 export default router;
