@@ -57,7 +57,10 @@ export const loginController = async (req, res) => {
       success: true,
       message: "User logged in successfully",
       data: {
-        accessToken: jwt.sign({ email: result.email }, "saleem"),
+        accessToken: jwt.sign(
+          { email: result.email, userId: result._id },
+          "saleem"
+        ),
       },
     });
   } else {
